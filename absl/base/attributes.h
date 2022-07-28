@@ -136,9 +136,12 @@
 // for further information.
 // The MinGW compiler doesn't complain about the weak attribute until the link
 // step, presumably because Windows doesn't use ELF binaries.
+//
+// Flutter: disable this on Windows due to linker errors seen in our current
+// Windows build environment.
 #if (ABSL_HAVE_ATTRIBUTE(weak) ||                                         \
      (defined(__GNUC__) && !defined(__clang__))) &&                       \
-    (!defined(_WIN32) || (defined(__clang__) && __clang_major__ >= 9)) && \
+    (!defined(_WIN32)) && \
     !defined(__MINGW32__)
 #undef ABSL_ATTRIBUTE_WEAK
 #define ABSL_ATTRIBUTE_WEAK __attribute__((weak))
@@ -708,9 +711,12 @@
 // just using the standard `constinit` keyword directly over this macro.
 //
 // Note that this attribute is redundant if the variable is declared constexpr.
+//
+// Flutter: disable this on Windows due to incompatibility with the version
+// of std::atomic that is currently used on LUCI.
 #if defined(__cpp_constinit) && __cpp_constinit >= 201907L
 #define ABSL_CONST_INIT constinit
-#elif ABSL_HAVE_CPP_ATTRIBUTE(clang::require_constant_initialization)
+#elif ABSL_HAVE_CPP_ATTRIBUTE(clang::require_constant_initialization) && !defined(_MSC_VER)
 #define ABSL_CONST_INIT [[clang::require_constant_initialization]]
 #else
 #define ABSL_CONST_INIT
