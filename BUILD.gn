@@ -120,8 +120,14 @@ group("default") {
 
 config("absl_include_config") {
   include_dirs = [ "." ]
-  cflags_cc = [ "-Wno-deprecated-builtins" ]
-  cflags_objcc = [ "-Wno-deprecated-builtins" ]
+  cflags_cc = [
+    "-Wno-unknown-warning-option",
+    "-Wno-deprecated-builtins",
+  ]
+  cflags_objcc = [
+    "-Wno-unknown-warning-option",
+    "-Wno-deprecated-builtins",
+  ]
 }
 
 config("absl_define_config") {
