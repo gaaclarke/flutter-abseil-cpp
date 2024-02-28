@@ -54,6 +54,7 @@ class LogMessage {
   struct InfoTag {};
   struct WarningTag {};
   struct ErrorTag {};
+  struct FatalTag {};
 
   // Used for `LOG`.
   LogMessage(const char* file, int line,
@@ -66,6 +67,8 @@ class LogMessage {
              WarningTag) ABSL_ATTRIBUTE_COLD ABSL_ATTRIBUTE_NOINLINE;
   LogMessage(const char* file, int line,
              ErrorTag) ABSL_ATTRIBUTE_COLD ABSL_ATTRIBUTE_NOINLINE;
+  LogMessage(const char* file, int line,
+             FatalTag) ABSL_ATTRIBUTE_COLD ABSL_ATTRIBUTE_NOINLINE;
   LogMessage(const LogMessage&) = delete;
   LogMessage& operator=(const LogMessage&) = delete;
   ~LogMessage() ABSL_ATTRIBUTE_COLD;
@@ -170,13 +173,15 @@ class LogMessage {
 
   // Types that support `AbslStringify()` are serialized that way.
   template <typename T,
-            typename std::enable_if<HasAbslStringify<T>::value, int>::type = 0>
+            typename std::enable_if<absl::HasAbslStringify<T>::value,
+                                    int>::type = 0>
   LogMessage& operator<<(const T& v) ABSL_ATTRIBUTE_NOINLINE;
 
   // Types that don't support `AbslStringify()` but do support streaming into a
   // `std::ostream&` are serialized that way.
   template <typename T,
-            typename std::enable_if<!HasAbslStringify<T>::value, int>::type = 0>
+            typename std::enable_if<!absl::HasAbslStringify<T>::value,
+                                    int>::type = 0>
   LogMessage& operator<<(const T& v) ABSL_ATTRIBUTE_NOINLINE;
 
   // Note: We explicitly do not support `operator<<` for non-const references
@@ -281,7 +286,7 @@ class StringifySink final {
 
 // Note: the following is declared `ABSL_ATTRIBUTE_NOINLINE`
 template <typename T,
-          typename std::enable_if<HasAbslStringify<T>::value, int>::type>
+          typename std::enable_if<absl::HasAbslStringify<T>::value, int>::type>
 LogMessage& LogMessage::operator<<(const T& v) {
   StringifySink sink(*this);
   // Replace with public API.
@@ -291,7 +296,7 @@ LogMessage& LogMessage::operator<<(const T& v) {
 
 // Note: the following is declared `ABSL_ATTRIBUTE_NOINLINE`
 template <typename T,
-          typename std::enable_if<!HasAbslStringify<T>::value, int>::type>
+          typename std::enable_if<!absl::HasAbslStringify<T>::value, int>::type>
 LogMessage& LogMessage::operator<<(const T& v) {
   OstreamView view(*data_);
   view.stream() << log_internal::NullGuard<T>().Guard(v);
@@ -355,7 +360,17 @@ class LogMessageFatal final : public LogMessage {
   ABSL_ATTRIBUTE_NORETURN ~LogMessageFatal();
 };
 
-class LogMessageQuietlyFatal final : public LogMessage {
+class LogMessageQuietly : public LogMessage {
+ public:
+  // All instances of LogMessageQuietly are FATAL. DLOG(QFATAL) calls this
+  // directly instead of LogMessageQuietlyFatal to make sure the destructor is
+  // not [[noreturn]] even if this is always FATAL.
+  LogMessageQuietly(const char* file, int line) ABSL_ATTRIBUTE_COLD;
+  ~LogMessageQuietly();
+};
+
+// Used for LOG(QFATAL) to make sure it's properly understood as [[noreturn]].
+class LogMessageQuietlyFatal final : public LogMessageQuietly {
  public:
   LogMessageQuietlyFatal(const char* file, int line) ABSL_ATTRIBUTE_COLD;
   LogMessageQuietlyFatal(const char* file, int line,

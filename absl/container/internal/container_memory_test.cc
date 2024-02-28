@@ -25,6 +25,7 @@
 
 #include "gmock/gmock.h"
 #include "gtest/gtest.h"
+#include "absl/base/no_destructor.h"
 #include "absl/container/internal/test_instance_tracker.h"
 #include "absl/meta/type_traits.h"
 #include "absl/strings/string_view.h"
@@ -58,7 +59,7 @@ TEST(Memory, AlignmentSmallerThanBase) {
 }
 
 std::map<std::type_index, int>& AllocationMap() {
-  static auto* map = new std::map<std::type_index, int>;
+  static absl::NoDestructor<std::map<std::type_index, int>> map;
   return *map;
 }
 
@@ -277,6 +278,38 @@ TEST(MapSlotPolicy, TransferReturnsTrue) {
                           nullptr, nullptr, nullptr)),
                       std::false_type>::value));
   }
+}
+
+TEST(MapSlotPolicy, DestroyReturnsTrue) {
+  {
+    using slot_policy = map_slot_policy<int, float>;
+    EXPECT_TRUE(
+        (std::is_same<decltype(slot_policy::destroy<std::allocator<char>>(
+                          nullptr, nullptr)),
+                      std::true_type>::value));
+  }
+  {
+    EXPECT_FALSE(std::is_trivially_destructible<std::unique_ptr<int>>::value);
+    using slot_policy = map_slot_policy<int, std::unique_ptr<int>>;
+    EXPECT_TRUE(
+        (std::is_same<decltype(slot_policy::destroy<std::allocator<char>>(
+                          nullptr, nullptr)),
+                      std::false_type>::value));
+  }
+}
+
+TEST(ApplyTest, TypeErasedApplyToSlotFn) {
+  size_t x = 7;
+  auto fn = [](size_t v) { return v * 2; };
+  EXPECT_EQ((TypeErasedApplyToSlotFn<decltype(fn), size_t>(&fn, &x)), 14);
+}
+
+TEST(ApplyTest, TypeErasedDerefAndApplyToSlotFn) {
+  size_t x = 7;
+  auto fn = [](size_t v) { return v * 2; };
+  size_t* x_ptr = &x;
+  EXPECT_EQ(
+      (TypeErasedDerefAndApplyToSlotFn<decltype(fn), size_t>(&fn, &x_ptr)), 14);
 }
 
 }  // namespace
