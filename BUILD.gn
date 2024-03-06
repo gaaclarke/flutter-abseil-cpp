@@ -10,7 +10,7 @@ import("//build/config/c++/c++.gni")
 import("//build/config/sanitizers/sanitizers.gni")
 import("//build/toolchain/toolchain.gni")
 import("//build_overrides/build.gni")
-import("//third_party/abseil-cpp/absl.gni")
+import("//flutter/third_party/abseil-cpp/absl.gni")
 
 config("absl_component_build") {
   defines = [ "ABSL_CONSUME_DLL" ]
@@ -56,58 +56,58 @@ component("absl") {
 
 group("absl_component_deps") {
   public_deps = [
-    "//third_party/abseil-cpp/absl/algorithm:container",
-    "//third_party/abseil-cpp/absl/base",
-    "//third_party/abseil-cpp/absl/base:config",
-    "//third_party/abseil-cpp/absl/base:core_headers",
-    "//third_party/abseil-cpp/absl/base:no_destructor",
-    "//third_party/abseil-cpp/absl/base:nullability",
-    "//third_party/abseil-cpp/absl/base:prefetch",
-    "//third_party/abseil-cpp/absl/cleanup",
-    "//third_party/abseil-cpp/absl/container:btree",
-    "//third_party/abseil-cpp/absl/container:fixed_array",
-    "//third_party/abseil-cpp/absl/container:flat_hash_map",
-    "//third_party/abseil-cpp/absl/container:flat_hash_set",
-    "//third_party/abseil-cpp/absl/container:inlined_vector",
-    "//third_party/abseil-cpp/absl/container:node_hash_map",
-    "//third_party/abseil-cpp/absl/container:node_hash_set",
-    "//third_party/abseil-cpp/absl/debugging:failure_signal_handler",
-    "//third_party/abseil-cpp/absl/debugging:stacktrace",
-    "//third_party/abseil-cpp/absl/debugging:symbolize",
-    "//third_party/abseil-cpp/absl/functional:any_invocable",
-    "//third_party/abseil-cpp/absl/functional:bind_front",
-    "//third_party/abseil-cpp/absl/functional:function_ref",
-    "//third_party/abseil-cpp/absl/functional:overload",
-    "//third_party/abseil-cpp/absl/hash",
-    "//third_party/abseil-cpp/absl/log:absl_check",
-    "//third_party/abseil-cpp/absl/log:absl_log",
-    "//third_party/abseil-cpp/absl/log:die_if_null",
-    "//third_party/abseil-cpp/absl/memory",
-    "//third_party/abseil-cpp/absl/meta:type_traits",
-    "//third_party/abseil-cpp/absl/numeric:bits",
-    "//third_party/abseil-cpp/absl/numeric:int128",
-    "//third_party/abseil-cpp/absl/random",
-    "//third_party/abseil-cpp/absl/random:distributions",
-    "//third_party/abseil-cpp/absl/status",
-    "//third_party/abseil-cpp/absl/status:statusor",
-    "//third_party/abseil-cpp/absl/strings",
-    "//third_party/abseil-cpp/absl/strings:cord",
-    "//third_party/abseil-cpp/absl/strings:has_ostream_operator",
-    "//third_party/abseil-cpp/absl/strings:str_format",
-    "//third_party/abseil-cpp/absl/strings:string_view",
-    "//third_party/abseil-cpp/absl/synchronization",
-    "//third_party/abseil-cpp/absl/time",
-    "//third_party/abseil-cpp/absl/types:optional",
-    "//third_party/abseil-cpp/absl/types:span",
-    "//third_party/abseil-cpp/absl/types:variant",
-    "//third_party/abseil-cpp/absl/utility",
+    "//flutter/third_party/abseil-cpp/absl/algorithm:container",
+    "//flutter/third_party/abseil-cpp/absl/base",
+    "//flutter/third_party/abseil-cpp/absl/base:config",
+    "//flutter/third_party/abseil-cpp/absl/base:core_headers",
+    "//flutter/third_party/abseil-cpp/absl/base:no_destructor",
+    "//flutter/third_party/abseil-cpp/absl/base:nullability",
+    "//flutter/third_party/abseil-cpp/absl/base:prefetch",
+    "//flutter/third_party/abseil-cpp/absl/cleanup",
+    "//flutter/third_party/abseil-cpp/absl/container:btree",
+    "//flutter/third_party/abseil-cpp/absl/container:fixed_array",
+    "//flutter/third_party/abseil-cpp/absl/container:flat_hash_map",
+    "//flutter/third_party/abseil-cpp/absl/container:flat_hash_set",
+    "//flutter/third_party/abseil-cpp/absl/container:inlined_vector",
+    "//flutter/third_party/abseil-cpp/absl/container:node_hash_map",
+    "//flutter/third_party/abseil-cpp/absl/container:node_hash_set",
+    "//flutter/third_party/abseil-cpp/absl/debugging:failure_signal_handler",
+    "//flutter/third_party/abseil-cpp/absl/debugging:stacktrace",
+    "//flutter/third_party/abseil-cpp/absl/debugging:symbolize",
+    "//flutter/third_party/abseil-cpp/absl/functional:any_invocable",
+    "//flutter/third_party/abseil-cpp/absl/functional:bind_front",
+    "//flutter/third_party/abseil-cpp/absl/functional:function_ref",
+    "//flutter/third_party/abseil-cpp/absl/functional:overload",
+    "//flutter/third_party/abseil-cpp/absl/hash",
+    "//flutter/third_party/abseil-cpp/absl/log:absl_check",
+    "//flutter/third_party/abseil-cpp/absl/log:absl_log",
+    "//flutter/third_party/abseil-cpp/absl/log:die_if_null",
+    "//flutter/third_party/abseil-cpp/absl/memory",
+    "//flutter/third_party/abseil-cpp/absl/meta:type_traits",
+    "//flutter/third_party/abseil-cpp/absl/numeric:bits",
+    "//flutter/third_party/abseil-cpp/absl/numeric:int128",
+    "//flutter/third_party/abseil-cpp/absl/random",
+    "//flutter/third_party/abseil-cpp/absl/random:distributions",
+    "//flutter/third_party/abseil-cpp/absl/status",
+    "//flutter/third_party/abseil-cpp/absl/status:statusor",
+    "//flutter/third_party/abseil-cpp/absl/strings",
+    "//flutter/third_party/abseil-cpp/absl/strings:cord",
+    "//flutter/third_party/abseil-cpp/absl/strings:has_ostream_operator",
+    "//flutter/third_party/abseil-cpp/absl/strings:str_format",
+    "//flutter/third_party/abseil-cpp/absl/strings:string_view",
+    "//flutter/third_party/abseil-cpp/absl/synchronization",
+    "//flutter/third_party/abseil-cpp/absl/time",
+    "//flutter/third_party/abseil-cpp/absl/types:optional",
+    "//flutter/third_party/abseil-cpp/absl/types:span",
+    "//flutter/third_party/abseil-cpp/absl/types:variant",
+    "//flutter/third_party/abseil-cpp/absl/utility",
   ]
 
   # The following dependencies currently don't build with NaCl.
   # TODO(https://crbug.com/1114625): Fix build errors and remove this section.
   if (is_nacl) {
     public_deps -=
-        [ "//third_party/abseil-cpp/absl/debugging:failure_signal_handler" ]
+        [ "//flutter/third_party/abseil-cpp/absl/debugging:failure_signal_handler" ]
   }
 
   visibility = [ ":absl" ]

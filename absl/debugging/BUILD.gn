@@ -3,7 +3,7 @@
 # found in the LICENSE file.
 
 import("//build/config/sanitizers/sanitizers.gni")
-import("//third_party/abseil-cpp/absl.gni")
+import("//flutter/third_party/abseil-cpp/absl.gni")
 
 absl_source_set("stacktrace") {
   sources = [
@@ -22,10 +22,10 @@ absl_source_set("stacktrace") {
   public = [ "stacktrace.h" ]
   deps = [
     ":debugging_internal",
-    "//third_party/abseil-cpp/absl/base:config",
-    "//third_party/abseil-cpp/absl/base:core_headers",
-    "//third_party/abseil-cpp/absl/base:dynamic_annotations",
-    "//third_party/abseil-cpp/absl/base:raw_logging_internal",
+    "//flutter/third_party/abseil-cpp/absl/base:config",
+    "//flutter/third_party/abseil-cpp/absl/base:core_headers",
+    "//flutter/third_party/abseil-cpp/absl/base:dynamic_annotations",
+    "//flutter/third_party/abseil-cpp/absl/base:raw_logging_internal",
   ]
 }
 
@@ -33,7 +33,7 @@ absl_test("stacktrace_test") {
   sources = ["stacktrace_test.cc"]
   deps = [
     ":stacktrace",
-    "//third_party/abseil-cpp/absl/base:core_headers",
+    "//flutter/third_party/abseil-cpp/absl/base:core_headers",
   ]
 }
 
@@ -53,14 +53,14 @@ absl_source_set("symbolize") {
   deps = [
     ":debugging_internal",
     ":demangle_internal",
-    "//third_party/abseil-cpp/absl/base",
-    "//third_party/abseil-cpp/absl/base:config",
-    "//third_party/abseil-cpp/absl/base:core_headers",
-    "//third_party/abseil-cpp/absl/base:dynamic_annotations",
-    "//third_party/abseil-cpp/absl/base:malloc_internal",
-    "//third_party/abseil-cpp/absl/base:raw_logging_internal",
-    "//third_party/abseil-cpp/absl/strings",
-    "//third_party/abseil-cpp/absl/strings:string_view",
+    "//flutter/third_party/abseil-cpp/absl/base",
+    "//flutter/third_party/abseil-cpp/absl/base:config",
+    "//flutter/third_party/abseil-cpp/absl/base:core_headers",
+    "//flutter/third_party/abseil-cpp/absl/base:dynamic_annotations",
+    "//flutter/third_party/abseil-cpp/absl/base:malloc_internal",
+    "//flutter/third_party/abseil-cpp/absl/base:raw_logging_internal",
+    "//flutter/third_party/abseil-cpp/absl/strings",
+    "//flutter/third_party/abseil-cpp/absl/strings:string_view",
   ]
 
   # TODO(mbonadei): The bazel file has:
@@ -73,14 +73,14 @@ absl_source_set("examine_stack") {
   public = [ "internal/examine_stack.h" ]
   visibility = [
     ":*",
-    "//third_party/abseil-cpp/absl/log/internal:*",
+    "//flutter/third_party/abseil-cpp/absl/log/internal:*",
   ]
   deps = [
     ":stacktrace",
     ":symbolize",
-    "//third_party/abseil-cpp/absl/base:config",
-    "//third_party/abseil-cpp/absl/base:core_headers",
-    "//third_party/abseil-cpp/absl/base:raw_logging_internal",
+    "//flutter/third_party/abseil-cpp/absl/base:config",
+    "//flutter/third_party/abseil-cpp/absl/base:core_headers",
+    "//flutter/third_party/abseil-cpp/absl/base:raw_logging_internal",
   ]
 }
 
@@ -90,10 +90,10 @@ absl_source_set("failure_signal_handler") {
   deps = [
     ":examine_stack",
     ":stacktrace",
-    "//third_party/abseil-cpp/absl/base",
-    "//third_party/abseil-cpp/absl/base:config",
-    "//third_party/abseil-cpp/absl/base:core_headers",
-    "//third_party/abseil-cpp/absl/base:raw_logging_internal",
+    "//flutter/third_party/abseil-cpp/absl/base",
+    "//flutter/third_party/abseil-cpp/absl/base:config",
+    "//flutter/third_party/abseil-cpp/absl/base:core_headers",
+    "//flutter/third_party/abseil-cpp/absl/base:raw_logging_internal",
   ]
 }
 
@@ -110,11 +110,11 @@ absl_source_set("debugging_internal") {
   ]
   visibility = [ ":*" ]
   deps = [
-    "//third_party/abseil-cpp/absl/base:config",
-    "//third_party/abseil-cpp/absl/base:core_headers",
-    "//third_party/abseil-cpp/absl/base:dynamic_annotations",
-    "//third_party/abseil-cpp/absl/base:errno_saver",
-    "//third_party/abseil-cpp/absl/base:raw_logging_internal",
+    "//flutter/third_party/abseil-cpp/absl/base:config",
+    "//flutter/third_party/abseil-cpp/absl/base:core_headers",
+    "//flutter/third_party/abseil-cpp/absl/base:dynamic_annotations",
+    "//flutter/third_party/abseil-cpp/absl/base:errno_saver",
+    "//flutter/third_party/abseil-cpp/absl/base:raw_logging_internal",
   ]
 }
 
@@ -122,13 +122,13 @@ absl_source_set("demangle_internal") {
   sources = [ "internal/demangle.cc" ]
   public = [ "internal/demangle.h" ]
   visibility = [
-    "//third_party/abseil-cpp/absl/container:*",
-    "//third_party/abseil-cpp/absl/debugging:*",
+    "//flutter/third_party/abseil-cpp/absl/container:*",
+    "//flutter/third_party/abseil-cpp/absl/debugging:*",
   ]
   deps = [
-    "//third_party/abseil-cpp/absl/base",
-    "//third_party/abseil-cpp/absl/base:config",
-    "//third_party/abseil-cpp/absl/base:core_headers",
+    "//flutter/third_party/abseil-cpp/absl/base",
+    "//flutter/third_party/abseil-cpp/absl/base:config",
+    "//flutter/third_party/abseil-cpp/absl/base:core_headers",
   ]
 }
 
@@ -141,8 +141,8 @@ absl_source_set("leak_check") {
     public = [ "leak_check.h" ]
   }
   deps = [
-    "//third_party/abseil-cpp/absl/base:config",
-    "//third_party/abseil-cpp/absl/base:core_headers",
+    "//flutter/third_party/abseil-cpp/absl/base:config",
+    "//flutter/third_party/abseil-cpp/absl/base:core_headers",
   ]
 }
 
@@ -151,9 +151,9 @@ absl_source_set("stack_consumption") {
   sources = [ "internal/stack_consumption.cc" ]
   public = [ "internal/stack_consumption.h" ]
   deps = [
-    "//third_party/abseil-cpp/absl/base:config",
-    "//third_party/abseil-cpp/absl/base:core_headers",
-    "//third_party/abseil-cpp/absl/base:raw_logging_internal",
+    "//flutter/third_party/abseil-cpp/absl/base:config",
+    "//flutter/third_party/abseil-cpp/absl/base:core_headers",
+    "//flutter/third_party/abseil-cpp/absl/base:raw_logging_internal",
   ]
   visibility = [ ":*" ]
 }

@@ -2,23 +2,23 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
-import("//third_party/abseil-cpp/absl.gni")
+import("//flutter/third_party/abseil-cpp/absl.gni")
 
 absl_source_set("compressed_tuple") {
   public = [ "internal/compressed_tuple.h" ]
-  deps = [ "//third_party/abseil-cpp/absl/utility" ]
+  deps = [ "//flutter/third_party/abseil-cpp/absl/utility" ]
 }
 
 absl_source_set("fixed_array") {
   public = [ "fixed_array.h" ]
   deps = [
     ":compressed_tuple",
-    "//third_party/abseil-cpp/absl/algorithm",
-    "//third_party/abseil-cpp/absl/base:config",
-    "//third_party/abseil-cpp/absl/base:core_headers",
-    "//third_party/abseil-cpp/absl/base:dynamic_annotations",
-    "//third_party/abseil-cpp/absl/base:throw_delegate",
-    "//third_party/abseil-cpp/absl/memory",
+    "//flutter/third_party/abseil-cpp/absl/algorithm",
+    "//flutter/third_party/abseil-cpp/absl/base:config",
+    "//flutter/third_party/abseil-cpp/absl/base:core_headers",
+    "//flutter/third_party/abseil-cpp/absl/base:dynamic_annotations",
+    "//flutter/third_party/abseil-cpp/absl/base:throw_delegate",
+    "//flutter/third_party/abseil-cpp/absl/memory",
   ]
 }
 
@@ -28,10 +28,10 @@ absl_test("fixed_array_test") {
     ":fixed_array",
     ":test_allocator",
     ":test_instance_tracker",
-    "//third_party/abseil-cpp/absl/base:config",
-    "//third_party/abseil-cpp/absl/base:exception_testing",
-    "//third_party/abseil-cpp/absl/hash:hash_testing",
-    "//third_party/abseil-cpp/absl/memory",
+    "//flutter/third_party/abseil-cpp/absl/base:config",
+    "//flutter/third_party/abseil-cpp/absl/base:exception_testing",
+    "//flutter/third_party/abseil-cpp/absl/hash:hash_testing",
+    "//flutter/third_party/abseil-cpp/absl/memory",
   ]
 }
 
@@ -39,11 +39,11 @@ absl_source_set("inlined_vector_internal") {
   public = [ "internal/inlined_vector.h" ]
   deps = [
     ":compressed_tuple",
-    "//third_party/abseil-cpp/absl/base:config",
-    "//third_party/abseil-cpp/absl/base:core_headers",
-    "//third_party/abseil-cpp/absl/memory",
-    "//third_party/abseil-cpp/absl/meta:type_traits",
-    "//third_party/abseil-cpp/absl/types:span",
+    "//flutter/third_party/abseil-cpp/absl/base:config",
+    "//flutter/third_party/abseil-cpp/absl/base:core_headers",
+    "//flutter/third_party/abseil-cpp/absl/memory",
+    "//flutter/third_party/abseil-cpp/absl/meta:type_traits",
+    "//flutter/third_party/abseil-cpp/absl/types:span",
   ]
 }
 
@@ -51,11 +51,11 @@ absl_source_set("inlined_vector") {
   public = [ "inlined_vector.h" ]
   deps = [
     ":inlined_vector_internal",
-    "//third_party/abseil-cpp/absl/algorithm",
-    "//third_party/abseil-cpp/absl/base:core_headers",
-    "//third_party/abseil-cpp/absl/base:throw_delegate",
-    "//third_party/abseil-cpp/absl/memory",
-    "//third_party/abseil-cpp/absl/meta:type_traits",
+    "//flutter/third_party/abseil-cpp/absl/algorithm",
+    "//flutter/third_party/abseil-cpp/absl/base:core_headers",
+    "//flutter/third_party/abseil-cpp/absl/base:throw_delegate",
+    "//flutter/third_party/abseil-cpp/absl/memory",
+    "//flutter/third_party/abseil-cpp/absl/meta:type_traits",
   ]
 }
 
@@ -63,7 +63,7 @@ absl_source_set("test_allocator") {
   testonly = true
   public = [ "internal/test_allocator.h" ]
   deps = [
-    "//third_party/abseil-cpp/absl/base:config",
+    "//flutter/third_party/abseil-cpp/absl/base:config",
     "//third_party/googletest:gtest",
   ]
   visibility = [ ":*" ]
@@ -75,13 +75,13 @@ absl_test("inlined_vector_test") {
     ":inlined_vector",
     ":test_allocator",
     ":test_instance_tracker",
-    "//third_party/abseil-cpp/absl/base:config",
-    "//third_party/abseil-cpp/absl/base:core_headers",
-    "//third_party/abseil-cpp/absl/base:exception_testing",
-    "//third_party/abseil-cpp/absl/hash:hash_testing",
-    "//third_party/abseil-cpp/absl/log:check",
-    "//third_party/abseil-cpp/absl/memory",
-    "//third_party/abseil-cpp/absl/strings",
+    "//flutter/third_party/abseil-cpp/absl/base:config",
+    "//flutter/third_party/abseil-cpp/absl/base:core_headers",
+    "//flutter/third_party/abseil-cpp/absl/base:exception_testing",
+    "//flutter/third_party/abseil-cpp/absl/hash:hash_testing",
+    "//flutter/third_party/abseil-cpp/absl/log:check",
+    "//flutter/third_party/abseil-cpp/absl/memory",
+    "//flutter/third_party/abseil-cpp/absl/strings",
   ]
 }
 
@@ -89,8 +89,8 @@ absl_source_set("test_instance_tracker") {
   testonly = true
   sources = [ "internal/test_instance_tracker.cc" ]
   public = [ "internal/test_instance_tracker.h" ]
-  deps = [ "//third_party/abseil-cpp/absl/types:compare" ]
-  visibility = [ "//third_party/abseil-cpp/absl/*" ]
+  deps = [ "//flutter/third_party/abseil-cpp/absl/types:compare" ]
+  visibility = [ "//flutter/third_party/abseil-cpp/absl/*" ]
 }
 
 absl_source_set("flat_hash_map") {
@@ -99,9 +99,9 @@ absl_source_set("flat_hash_map") {
     ":container_memory",
     ":hash_function_defaults",
     ":raw_hash_map",
-    "//third_party/abseil-cpp/absl/algorithm:container",
-    "//third_party/abseil-cpp/absl/base:core_headers",
-    "//third_party/abseil-cpp/absl/memory",
+    "//flutter/third_party/abseil-cpp/absl/algorithm:container",
+    "//flutter/third_party/abseil-cpp/absl/base:core_headers",
+    "//flutter/third_party/abseil-cpp/absl/memory",
   ]
 }
 
@@ -115,9 +115,9 @@ absl_test("flat_hash_map_test") {
     ":unordered_map_lookup_test",
     ":unordered_map_members_test",
     ":unordered_map_modifiers_test",
-    "//third_party/abseil-cpp/absl/log:check",
-    "//third_party/abseil-cpp/absl/meta:type_traits",
-    "//third_party/abseil-cpp/absl/types:any",
+    "//flutter/third_party/abseil-cpp/absl/log:check",
+    "//flutter/third_party/abseil-cpp/absl/meta:type_traits",
+    "//flutter/third_party/abseil-cpp/absl/types:any",
   ]
 }
 
@@ -127,9 +127,9 @@ absl_source_set("flat_hash_set") {
     ":container_memory",
     ":hash_function_defaults",
     ":raw_hash_set",
-    "//third_party/abseil-cpp/absl/algorithm:container",
-    "//third_party/abseil-cpp/absl/base:core_headers",
-    "//third_party/abseil-cpp/absl/memory",
+    "//flutter/third_party/abseil-cpp/absl/algorithm:container",
+    "//flutter/third_party/abseil-cpp/absl/base:core_headers",
+    "//flutter/third_party/abseil-cpp/absl/memory",
   ]
 }
 
@@ -144,10 +144,10 @@ absl_test("flat_hash_set_test") {
     ":unordered_set_lookup_test",
     ":unordered_set_members_test",
     ":unordered_set_modifiers_test",
-    "//third_party/abseil-cpp/absl/base:config",
-    "//third_party/abseil-cpp/absl/log:check",
-    "//third_party/abseil-cpp/absl/memory",
-    "//third_party/abseil-cpp/absl/strings",
+    "//flutter/third_party/abseil-cpp/absl/base:config",
+    "//flutter/third_party/abseil-cpp/absl/log:check",
+    "//flutter/third_party/abseil-cpp/absl/memory",
+    "//flutter/third_party/abseil-cpp/absl/strings",
   ]
 }
 
@@ -158,9 +158,9 @@ absl_source_set("node_hash_map") {
     ":hash_function_defaults",
     ":node_slot_policy",
     ":raw_hash_map",
-    "//third_party/abseil-cpp/absl/algorithm:container",
-    "//third_party/abseil-cpp/absl/base:core_headers",
-    "//third_party/abseil-cpp/absl/memory",
+    "//flutter/third_party/abseil-cpp/absl/algorithm:container",
+    "//flutter/third_party/abseil-cpp/absl/base:core_headers",
+    "//flutter/third_party/abseil-cpp/absl/memory",
   ]
 }
 
@@ -171,19 +171,19 @@ absl_source_set("node_hash_set") {
     ":hash_function_defaults",
     ":node_slot_policy",
     ":raw_hash_set",
-    "//third_party/abseil-cpp/absl/algorithm:container",
-    "//third_party/abseil-cpp/absl/base:core_headers",
-    "//third_party/abseil-cpp/absl/memory",
+    "//flutter/third_party/abseil-cpp/absl/algorithm:container",
+    "//flutter/third_party/abseil-cpp/absl/base:core_headers",
+    "//flutter/third_party/abseil-cpp/absl/memory",
   ]
 }
 
 absl_source_set("container_memory") {
   public = [ "internal/container_memory.h" ]
   deps = [
-    "//third_party/abseil-cpp/absl/base:config",
-    "//third_party/abseil-cpp/absl/memory",
-    "//third_party/abseil-cpp/absl/meta:type_traits",
-    "//third_party/abseil-cpp/absl/utility",
+    "//flutter/third_party/abseil-cpp/absl/base:config",
+    "//flutter/third_party/abseil-cpp/absl/memory",
+    "//flutter/third_party/abseil-cpp/absl/meta:type_traits",
+    "//flutter/third_party/abseil-cpp/absl/utility",
   ]
 }
 
@@ -193,23 +193,23 @@ absl_source_set("container_memory") {
 #  deps = [
 #    ":container_memory",
 #    ":test_instance_tracker",
-#    "//third_party/abseil-cpp/absl/base:no_destructor",
-#    "//third_party/abseil-cpp/absl/meta:type_traits",
-#    "//third_party/abseil-cpp/absl/strings",
+#    "//flutter/third_party/abseil-cpp/absl/base:no_destructor",
+#    "//flutter/third_party/abseil-cpp/absl/meta:type_traits",
+#    "//flutter/third_party/abseil-cpp/absl/strings",
 #  ]
 # }
 
 absl_source_set("hash_function_defaults") {
   public = [ "internal/hash_function_defaults.h" ]
-  visibility = [ "//third_party/abseil-cpp/absl/container:*" ]
+  visibility = [ "//flutter/third_party/abseil-cpp/absl/container:*" ]
   deps = [
     ":common",
-    "//third_party/abseil-cpp/absl/base:config",
-    "//third_party/abseil-cpp/absl/hash",
-    "//third_party/abseil-cpp/absl/meta:type_traits",
-    "//third_party/abseil-cpp/absl/strings",
-    "//third_party/abseil-cpp/absl/strings:cord",
-    "//third_party/abseil-cpp/absl/strings:string_view",
+    "//flutter/third_party/abseil-cpp/absl/base:config",
+    "//flutter/third_party/abseil-cpp/absl/hash",
+    "//flutter/third_party/abseil-cpp/absl/meta:type_traits",
+    "//flutter/third_party/abseil-cpp/absl/strings",
+    "//flutter/third_party/abseil-cpp/absl/strings:cord",
+    "//flutter/third_party/abseil-cpp/absl/strings:string_view",
   ]
 }
 
@@ -219,11 +219,11 @@ absl_test("hash_function_defaults_test") {
     ":flat_hash_map",
     ":flat_hash_set",
     ":hash_function_defaults",
-    "//third_party/abseil-cpp/absl/hash",
-    "//third_party/abseil-cpp/absl/random",
-    "//third_party/abseil-cpp/absl/strings",
-    "//third_party/abseil-cpp/absl/strings:cord",
-    "//third_party/abseil-cpp/absl/strings:cord_test_helpers",
+    "//flutter/third_party/abseil-cpp/absl/hash",
+    "//flutter/third_party/abseil-cpp/absl/random",
+    "//flutter/third_party/abseil-cpp/absl/strings",
+    "//flutter/third_party/abseil-cpp/absl/strings:cord",
+    "//flutter/third_party/abseil-cpp/absl/strings:cord_test_helpers",
   ]
 }
 
@@ -233,10 +233,10 @@ absl_source_set("hash_generator_testing") {
   public = [ "internal/hash_generator_testing.h" ]
   deps = [
     ":hash_policy_testing",
-    "//third_party/abseil-cpp/absl/base:no_destructor",
-    "//third_party/abseil-cpp/absl/memory",
-    "//third_party/abseil-cpp/absl/meta:type_traits",
-    "//third_party/abseil-cpp/absl/strings:string_view",
+    "//flutter/third_party/abseil-cpp/absl/base:no_destructor",
+    "//flutter/third_party/abseil-cpp/absl/memory",
+    "//flutter/third_party/abseil-cpp/absl/meta:type_traits",
+    "//flutter/third_party/abseil-cpp/absl/strings:string_view",
   ]
 }
 
@@ -244,8 +244,8 @@ absl_source_set("hash_policy_testing") {
   testonly = true
   public = [ "internal/hash_policy_testing.h" ]
   deps = [
-    "//third_party/abseil-cpp/absl/hash",
-    "//third_party/abseil-cpp/absl/strings:string_view",
+    "//flutter/third_party/abseil-cpp/absl/hash",
+    "//flutter/third_party/abseil-cpp/absl/strings:string_view",
   ]
 }
 
@@ -253,21 +253,21 @@ absl_source_set("hash_policy_traits") {
   public = [ "internal/hash_policy_traits.h" ]
   deps = [
     ":common_policy_traits",
-    "//third_party/abseil-cpp/absl/meta:type_traits",
+    "//flutter/third_party/abseil-cpp/absl/meta:type_traits",
   ]
 }
 
 absl_source_set("common_policy_traits") {
   public = [ "internal/common_policy_traits.h" ]
-  visibility = [ "//third_party/abseil-cpp/absl/container:*" ]
-  deps = [ "//third_party/abseil-cpp/absl/meta:type_traits" ]
+  visibility = [ "//flutter/third_party/abseil-cpp/absl/container:*" ]
+  deps = [ "//flutter/third_party/abseil-cpp/absl/meta:type_traits" ]
 }
 
 absl_test("common_policy_traits_test") {
   sources = [ "internal/common_policy_traits_test.cc" ]
   deps = [
     ":common_policy_traits",
-    "//third_party/abseil-cpp/absl/base:config",
+    "//flutter/third_party/abseil-cpp/absl/base:config",
   ]
 }
 
@@ -278,7 +278,7 @@ absl_source_set("hashtable_debug") {
 
 absl_source_set("hashtable_debug_hooks") {
   public = [ "internal/hashtable_debug_hooks.h" ]
-  deps = [ "//third_party/abseil-cpp/absl/base:config" ]
+  deps = [ "//flutter/third_party/abseil-cpp/absl/base:config" ]
 }
 
 absl_source_set("hashtablez_sampler") {
@@ -288,24 +288,24 @@ absl_source_set("hashtablez_sampler") {
     "internal/hashtablez_sampler_force_weak_definition.cc",
   ]
   deps = [
-    "//third_party/abseil-cpp/absl/base",
-    "//third_party/abseil-cpp/absl/base:config",
-    "//third_party/abseil-cpp/absl/base:core_headers",
-    "//third_party/abseil-cpp/absl/base:no_destructor",
-    "//third_party/abseil-cpp/absl/base:raw_logging_internal",
-    "//third_party/abseil-cpp/absl/debugging:stacktrace",
-    "//third_party/abseil-cpp/absl/memory",
-    "//third_party/abseil-cpp/absl/profiling:exponential_biased",
-    "//third_party/abseil-cpp/absl/profiling:sample_recorder",
-    "//third_party/abseil-cpp/absl/synchronization",
-    "//third_party/abseil-cpp/absl/time",
-    "//third_party/abseil-cpp/absl/utility",
+    "//flutter/third_party/abseil-cpp/absl/base",
+    "//flutter/third_party/abseil-cpp/absl/base:config",
+    "//flutter/third_party/abseil-cpp/absl/base:core_headers",
+    "//flutter/third_party/abseil-cpp/absl/base:no_destructor",
+    "//flutter/third_party/abseil-cpp/absl/base:raw_logging_internal",
+    "//flutter/third_party/abseil-cpp/absl/debugging:stacktrace",
+    "//flutter/third_party/abseil-cpp/absl/memory",
+    "//flutter/third_party/abseil-cpp/absl/profiling:exponential_biased",
+    "//flutter/third_party/abseil-cpp/absl/profiling:sample_recorder",
+    "//flutter/third_party/abseil-cpp/absl/synchronization",
+    "//flutter/third_party/abseil-cpp/absl/time",
+    "//flutter/third_party/abseil-cpp/absl/utility",
   ]
 }
 
 absl_source_set("node_slot_policy") {
   public = [ "internal/node_slot_policy.h" ]
-  deps = [ "//third_party/abseil-cpp/absl/base:config" ]
+  deps = [ "//flutter/third_party/abseil-cpp/absl/base:config" ]
 }
 
 absl_test("node_slot_policy_test") {
@@ -313,7 +313,7 @@ absl_test("node_slot_policy_test") {
   deps = [
     ":hash_policy_traits",
     ":node_slot_policy",
-    "//third_party/abseil-cpp/absl/base:config",
+    "//flutter/third_party/abseil-cpp/absl/base:config",
   ]
 }
 
@@ -322,17 +322,17 @@ absl_source_set("raw_hash_map") {
   deps = [
     ":container_memory",
     ":raw_hash_set",
-    "//third_party/abseil-cpp/absl/base:config",
-    "//third_party/abseil-cpp/absl/base:core_headers",
-    "//third_party/abseil-cpp/absl/base:throw_delegate",
+    "//flutter/third_party/abseil-cpp/absl/base:config",
+    "//flutter/third_party/abseil-cpp/absl/base:core_headers",
+    "//flutter/third_party/abseil-cpp/absl/base:throw_delegate",
   ]
 }
 
 absl_source_set("common") {
   public = [ "internal/common.h" ]
   deps = [
-    "//third_party/abseil-cpp/absl/meta:type_traits",
-    "//third_party/abseil-cpp/absl/types:optional",
+    "//flutter/third_party/abseil-cpp/absl/meta:type_traits",
+    "//flutter/third_party/abseil-cpp/absl/types:optional",
   ]
 }
 
@@ -346,17 +346,17 @@ absl_source_set("raw_hash_set") {
     ":hash_policy_traits",
     ":hashtable_debug_hooks",
     ":hashtablez_sampler",
-    "//third_party/abseil-cpp/absl/base:config",
-    "//third_party/abseil-cpp/absl/base:core_headers",
-    "//third_party/abseil-cpp/absl/base:dynamic_annotations",
-    "//third_party/abseil-cpp/absl/base:endian",
-    "//third_party/abseil-cpp/absl/base:prefetch",
-    "//third_party/abseil-cpp/absl/base:raw_logging_internal",
-    "//third_party/abseil-cpp/absl/hash",
-    "//third_party/abseil-cpp/absl/memory",
-    "//third_party/abseil-cpp/absl/meta:type_traits",
-    "//third_party/abseil-cpp/absl/numeric:bits",
-    "//third_party/abseil-cpp/absl/utility",
+    "//flutter/third_party/abseil-cpp/absl/base:config",
+    "//flutter/third_party/abseil-cpp/absl/base:core_headers",
+    "//flutter/third_party/abseil-cpp/absl/base:dynamic_annotations",
+    "//flutter/third_party/abseil-cpp/absl/base:endian",
+    "//flutter/third_party/abseil-cpp/absl/base:prefetch",
+    "//flutter/third_party/abseil-cpp/absl/base:raw_logging_internal",
+    "//flutter/third_party/abseil-cpp/absl/hash",
+    "//flutter/third_party/abseil-cpp/absl/memory",
+    "//flutter/third_party/abseil-cpp/absl/meta:type_traits",
+    "//flutter/third_party/abseil-cpp/absl/numeric:bits",
+    "//flutter/third_party/abseil-cpp/absl/utility",
   ]
 }
 
@@ -372,15 +372,15 @@ absl_test("raw_hash_set_test") {
     ":hashtablez_sampler",
     ":raw_hash_set",
     ":test_allocator",
-    "//third_party/abseil-cpp/absl/base",
-    "//third_party/abseil-cpp/absl/base:config",
-    "//third_party/abseil-cpp/absl/base:core_headers",
-    "//third_party/abseil-cpp/absl/base:prefetch",
-    "//third_party/abseil-cpp/absl/hash",
-    "//third_party/abseil-cpp/absl/log",
-    "//third_party/abseil-cpp/absl/memory",
-    "//third_party/abseil-cpp/absl/meta:type_traits",
-    "//third_party/abseil-cpp/absl/strings",
+    "//flutter/third_party/abseil-cpp/absl/base",
+    "//flutter/third_party/abseil-cpp/absl/base:config",
+    "//flutter/third_party/abseil-cpp/absl/base:core_headers",
+    "//flutter/third_party/abseil-cpp/absl/base:prefetch",
+    "//flutter/third_party/abseil-cpp/absl/hash",
+    "//flutter/third_party/abseil-cpp/absl/log",
+    "//flutter/third_party/abseil-cpp/absl/memory",
+    "//flutter/third_party/abseil-cpp/absl/meta:type_traits",
+    "//flutter/third_party/abseil-cpp/absl/strings",
   ]
 }
 
@@ -390,20 +390,20 @@ absl_test("raw_hash_set_allocator_test") {
     ":container_memory",
     ":raw_hash_set",
     ":tracked",
-    "//third_party/abseil-cpp/absl/base:config",
+    "//flutter/third_party/abseil-cpp/absl/base:config",
   ]
 }
 
 absl_source_set("layout") {
   public = [ "internal/layout.h" ]
   deps = [
-    "//third_party/abseil-cpp/absl/base:config",
-    "//third_party/abseil-cpp/absl/base:core_headers",
-    "//third_party/abseil-cpp/absl/debugging:demangle_internal",
-    "//third_party/abseil-cpp/absl/meta:type_traits",
-    "//third_party/abseil-cpp/absl/strings",
-    "//third_party/abseil-cpp/absl/types:span",
-    "//third_party/abseil-cpp/absl/utility",
+    "//flutter/third_party/abseil-cpp/absl/base:config",
+    "//flutter/third_party/abseil-cpp/absl/base:core_headers",
+    "//flutter/third_party/abseil-cpp/absl/debugging:demangle_internal",
+    "//flutter/third_party/abseil-cpp/absl/meta:type_traits",
+    "//flutter/third_party/abseil-cpp/absl/strings",
+    "//flutter/third_party/abseil-cpp/absl/types:span",
+    "//flutter/third_party/abseil-cpp/absl/utility",
   ]
 }
 
@@ -411,17 +411,17 @@ absl_test("layout_test") {
   sources = [ "internal/layout_test.cc" ]
   deps = [
     ":layout",
-    "//third_party/abseil-cpp/absl/base:config",
-    "//third_party/abseil-cpp/absl/log:check",
-    "//third_party/abseil-cpp/absl/types:span",
-    "//third_party/abseil-cpp/absl/utility",
+    "//flutter/third_party/abseil-cpp/absl/base:config",
+    "//flutter/third_party/abseil-cpp/absl/log:check",
+    "//flutter/third_party/abseil-cpp/absl/types:span",
+    "//flutter/third_party/abseil-cpp/absl/utility",
   ]
 }
 
 absl_source_set("tracked") {
   testonly = true
   public = [ "internal/tracked.h" ]
-  deps = [ "//third_party/abseil-cpp/absl/base:config" ]
+  deps = [ "//flutter/third_party/abseil-cpp/absl/base:config" ]
 }
 
 absl_source_set("unordered_map_constructor_test") {
@@ -460,7 +460,7 @@ absl_source_set("unordered_set_constructor_test") {
   deps = [
     ":hash_generator_testing",
     ":hash_policy_testing",
-    "//third_party/abseil-cpp/absl/meta:type_traits",
+    "//flutter/third_party/abseil-cpp/absl/meta:type_traits",
     "//third_party/googletest:gtest",
   ]
 }
@@ -469,7 +469,7 @@ absl_source_set("unordered_set_members_test") {
   testonly = true
   public = [ "internal/unordered_set_members_test.h" ]
   deps = [
-    "//third_party/abseil-cpp/absl/meta:type_traits",
+    "//flutter/third_party/abseil-cpp/absl/meta:type_traits",
     "//third_party/googletest:gtest",
   ]
 }
@@ -478,7 +478,7 @@ absl_source_set("unordered_map_members_test") {
   testonly = true
   public = [ "internal/unordered_map_members_test.h" ]
   deps = [
-    "//third_party/abseil-cpp/absl/meta:type_traits",
+    "//flutter/third_party/abseil-cpp/absl/meta:type_traits",
     "//third_party/googletest:gtest",
   ]
 }
@@ -528,15 +528,15 @@ absl_source_set("btree") {
     ":compressed_tuple",
     ":container_memory",
     ":layout",
-    "//third_party/abseil-cpp/absl/base:core_headers",
-    "//third_party/abseil-cpp/absl/base:raw_logging_internal",
-    "//third_party/abseil-cpp/absl/base:throw_delegate",
-    "//third_party/abseil-cpp/absl/memory",
-    "//third_party/abseil-cpp/absl/meta:type_traits",
-    "//third_party/abseil-cpp/absl/strings:cord",
-    "//third_party/abseil-cpp/absl/strings:string_view",
-    "//third_party/abseil-cpp/absl/types:compare",
-    "//third_party/abseil-cpp/absl/utility",
+    "//flutter/third_party/abseil-cpp/absl/base:core_headers",
+    "//flutter/third_party/abseil-cpp/absl/base:raw_logging_internal",
+    "//flutter/third_party/abseil-cpp/absl/base:throw_delegate",
+    "//flutter/third_party/abseil-cpp/absl/memory",
+    "//flutter/third_party/abseil-cpp/absl/meta:type_traits",
+    "//flutter/third_party/abseil-cpp/absl/strings:cord",
+    "//flutter/third_party/abseil-cpp/absl/strings:string_view",
+    "//flutter/third_party/abseil-cpp/absl/types:compare",
+    "//flutter/third_party/abseil-cpp/absl/utility",
   ]
 }
 
@@ -546,9 +546,9 @@ absl_source_set("btree_test_common") {
   deps = [
     ":btree",
     ":flat_hash_set",
-    "//third_party/abseil-cpp/absl/strings",
-    "//third_party/abseil-cpp/absl/strings:cord",
-    "//third_party/abseil-cpp/absl/time",
+    "//flutter/third_party/abseil-cpp/absl/strings",
+    "//flutter/third_party/abseil-cpp/absl/strings:cord",
+    "//flutter/third_party/abseil-cpp/absl/time",
   ]
 }
 # TODO(mbonadei): Fix issue with EXPECT_DEATH and uncomment.
@@ -559,15 +559,15 @@ absl_source_set("btree_test_common") {
 #     ":btree_test_common",
 #     ":test_allocator",
 #     ":test_instance_tracker",
-#     "//third_party/abseil-cpp/absl/algorithm:container",
-#     "//third_party/abseil-cpp/absl/base:core_headers",
-#     "//third_party/abseil-cpp/absl/base:raw_logging_internal",
-#     "//third_party/abseil-cpp/absl/flags:flag",
-#     "//third_party/abseil-cpp/absl/hash:hash_testing",
-#     "//third_party/abseil-cpp/absl/memory",
-#     "//third_party/abseil-cpp/absl/random",
-#     "//third_party/abseil-cpp/absl/strings",
-#     "//third_party/abseil-cpp/absl/types:compare",
-#     "//third_party/abseil-cpp/absl/types:optional",
+#     "//flutter/third_party/abseil-cpp/absl/algorithm:container",
+#     "//flutter/third_party/abseil-cpp/absl/base:core_headers",
+#     "//flutter/third_party/abseil-cpp/absl/base:raw_logging_internal",
+#     "//flutter/third_party/abseil-cpp/absl/flags:flag",
+#     "//flutter/third_party/abseil-cpp/absl/hash:hash_testing",
+#     "//flutter/third_party/abseil-cpp/absl/memory",
+#     "//flutter/third_party/abseil-cpp/absl/random",
+#     "//flutter/third_party/abseil-cpp/absl/strings",
+#     "//flutter/third_party/abseil-cpp/absl/types:compare",
+#     "//flutter/third_party/abseil-cpp/absl/types:optional",
 #   ]
 # }
